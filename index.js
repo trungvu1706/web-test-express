@@ -6,7 +6,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL);
+
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+});
+
+
 
 var bookRoute = require('./routers/book.route');
 var userRoute = require('./routers/user.route');
