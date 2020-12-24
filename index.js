@@ -40,7 +40,9 @@ app.use(express.static('public'));
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 app.use(sessionMiddleware);
 
-
+app.get('/', function(req, res, next) {
+    res.redirect('/books');
+});
 app.use('/books', bookRoute);
 app.use('/users', authMiddleware.requireAuth, userRoute);
 app.use('/transactions', authMiddleware.requireAuth, transactionRoute);
